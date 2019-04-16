@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const Sequelize = require('sequelize')
 
-const connectionString = process.env.port || 'postgres://postgres:secret@localhost:5432/postgres'
+const connectionString = process.env.DATABASE_URL || 'postgres://postgres:secret@localhost:5432/postgres'
 const sequelize = new Sequelize(connectionString, {define: { timestamps: false }})
 const bodyParser = require('body-parser')
 
@@ -59,7 +59,7 @@ app.put('/houses/:id', function (req, res) {
         res.send('DELETE request to homepage');
       });
 
-const port = 4000
+const port = process.env.PORT || 80
 
 app.listen(port, () => `Listening on port ${port}`)
 
